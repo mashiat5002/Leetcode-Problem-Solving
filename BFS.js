@@ -57,16 +57,17 @@ const node = buildTree([1,2,4,-1,-1,5,-1,-1,3,-1,-1]);
 
 
 
-var levelOrder = function (root) {
+var levelOrderBottom = function (root) {
     var stack_parent = [];
     stack_parent.push(root);
     
     var stack_childs = [];
     var res = [];
+    var final_res = [];
     
     while (!(stack_parent.length==0 && stack_childs.length==0)) {
      stack_parent.map((x)=>{
-        console.log(x.val)
+       
         if(x.left!=null)
             stack_childs.push(x.left);
         if(x.right!=null)
@@ -78,13 +79,18 @@ var levelOrder = function (root) {
       stack_parent= stack_childs;
       stack_childs = [];
     }
-    return res;
+
+    while(res.length!=0){
+        final_res.push(res.pop());
+    }
+    
+    return final_res;
   };
 
 
 
   const result=levelOrder(node);
-console.log(result[0])
+console.log(result[2])
 
 
 
